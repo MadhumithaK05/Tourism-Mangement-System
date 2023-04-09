@@ -6,12 +6,12 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
-from aunthentication.models import Members2
+from authentication.models import Members2
 
 # Create your views here.
 
 def home(request):
-    return render(request, "aunthentication/index.html")
+    return render(request, "authentication/index.html")
 
 def signup(request):
     if request.method == "POST":
@@ -29,7 +29,7 @@ def signup(request):
         messages.success(request, "Successfully Registered")
         return redirect('signin')
         
-    return render(request, "aunthentication/signup.html")
+    return render(request, "authentication/signup.html")
 
 def signin(request):
     if request.method == "POST":
@@ -40,12 +40,12 @@ def signin(request):
         
         if user is not None:
             login(request, user)
-            return render(request, "aunthentication/index.html",{'fname':username})
+            return render(request, "authentication/index.html",{'fname':username})
         else:
             messages.error(request, "Bad Credentials")
             return redirect("signin")
         
-    return render(request, "aunthentication/signin.html")
+    return render(request, "authentication/signin.html")
 
 def book(request):
-    return render(request, "aunthentication/book.html")
+    return render(request, "authentication/book.html")
