@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
-from authentication.models import Members2
+from authentication.models import Members
 
 # Create your views here.
 
@@ -22,7 +22,7 @@ def signup(request):
         Pwd = request.POST['pwd']
         ConPwd = request.POST['conpwd']
         
-        myuser = Members2(username=username, email=email, phone=int(PhNum), password=Pwd, conpwd=ConPwd)
+        myuser = Members(username=username, email=email, phone=int(PhNum), password=Pwd, conpwd=ConPwd)
         
         myuser.save()
         
