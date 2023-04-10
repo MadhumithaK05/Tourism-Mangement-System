@@ -4,9 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from authentication.models import Members
+from django.contrib.auth import authenticate, login
+from authentication.models import Customers
 
 # Create your views here.
 
@@ -19,10 +18,10 @@ def signup(request):
         username = request.POST.get('username')
         email = request.POST['email']
         PhNum = request.POST['phone']
-        Pwd = request.POST['pwd']
+        password = request.POST['password']
         ConPwd = request.POST['conpwd']
         
-        myuser = Members(username=username, email=email, phone=int(PhNum), password=Pwd, conpwd=ConPwd)
+        myuser = User.objects.create(username=username, email=email, phone=int(PhNum), password=password, conpwd=ConPwd)
         
         myuser.save()
         
@@ -33,10 +32,10 @@ def signup(request):
 
 def signin(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        Pwd = request.POST.get('pwd')
+        username = request.POST["username"]
+        password = request.POST["password"]
         
-        user = authenticate(username=username, password=Pwd)
+        user = authenticate(request,username=username, password=password)
         
         if user is not None:
             login(request, user)

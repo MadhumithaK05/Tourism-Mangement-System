@@ -33,7 +33,15 @@
                     <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                   </li>
                 </ul>
-                
+                <div class="d-flex justify-content-between">
+                  <li class="nav-item">
+                    {% if user.is_autenticated%}
+                    <a class="nav-link active" aria-current="page" href="#">{{fname}}</a>
+                    {% else %}
+                    <a class="nav-link active" aria-current="page" href="signin.html">Login</a>
+                    {% endif %}
+                  </li>
+                </div>
               </div>
             </div>
           </nav><br><br>
