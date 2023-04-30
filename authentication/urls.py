@@ -11,5 +11,7 @@ urlpatterns = [
     path('book.html', views.book, name="book"),
     path('custom.html', views.custom, name="custom"),
     path('trans.html', views.trans, name="trans"),
+    path('notcomplete.html', views.com, name="com"),
+    #path('notcomplete.html', views.completed, name="completed"),
     path('signout',views.signout, name="signout"),
 ]

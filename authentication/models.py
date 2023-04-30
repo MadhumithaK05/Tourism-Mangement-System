@@ -12,11 +12,13 @@ class Customers(models.Model):
 
 
 class Transaction(models.Model):
+    
     username=models.CharField(max_length=100)
     phone=models.BigIntegerField()
     place=models.CharField(max_length=100)
     number_pass=models.IntegerField()
     price=models.IntegerField()
+    completed=models.BooleanField(default=False)
     
     def __str__(self):
         return f"{self.username}({self.price})"
