@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-UA-Compatible" content="IE=edge">
-        <title>Customers</title>
+        <title>Booked</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -31,6 +31,27 @@
           background-color: #123456;
           color: white;
         }
+        input[type="submit"]{
+          border: none;
+          outline: none;
+          height: 40px;
+          background: #123456;
+          color:#fff;
+          font-size: 18px;
+          border-radius: 20px;
+          transition: .5s;
+          box-shadow: inset 0 0 0 0 rgb(230, 320, 120);
+      }
+        input[type="submit"]:hover{
+          cursor: pointer;
+          background: rgb(230, 320, 120);
+          color: #000;
+          box-shadow: inset 340px 0 0 0 rgb(130, 220, 238);
+      }
+      input{
+        width: 20%;
+        margin-bottom: 20px;
+    }
     </style>
 </head>
 <body>
@@ -49,8 +70,11 @@
             <div class="d-flex justify-content-between">
               <li class="nav-item">
                 <li class="name">
-                  <a class="nav-link active" aria-current="page" href="trans.html">Booked</a>
+                  <a class="nav-link active" aria-current="page" href="custom.html">Customers</a>
                   </li>
+                  <li class="bo">
+                    <a class="nav-link active" aria-current="page" href="trans.html">Booked</a>
+                    </li>
                   <li class="out">
                   <a class="nav-link active" aria-current="page" href="signout">Logout</a>
                   </li>
@@ -59,19 +83,35 @@
           </div>
         </div>
       </nav><br><br>
+      <form action="/notcomplete.html" method="POST">
+        {% csrf_token %}
       <table>
         <tr>
             <th>User</th>
-            <th>Email</th>
             <th>Phone Number</th>
+            <th>Place</th>
+            <th>Number of Passengers</th>
+            <th>Price</th>
+            <th>Completed</th>
         </tr>
-        {% for item in cust %}
+        {% for item in tr %}
         <tr>
             <td>{{ item.username }}</td>
-            <td>{{ item.email }}</td>
             <td>{{ item.phone }}</td>
+            <td>{{ item.place }}</td>
+            <td>{{ item.number_pass }}</td>
+            <td>{{ item.price }}</td>
+            <td><input type="checkbox" name="selected_items" value="{{ item.phone }}"></td>
         </tr>
         {% endfor %}
       </table>
+      <br>
+      <input type="submit" onclick="Success()" class="btn" name="sub" id="sub" value="Confirm">
+    </form>
+      <script>
+        function Success(){
+          alert("Changed");
+        }
+      </script>
     </body>
 </html>
